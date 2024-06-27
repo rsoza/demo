@@ -2,10 +2,10 @@ const syntaxColors = {
   keywords: {
     color: "blue",
     elements: [
+    "else",
       "int",
       "return",
-      "if (",
-      "else",
+      "if",
       "while",
       "for",
       "bool",
@@ -63,20 +63,20 @@ export const upper_static = `
     // Function to perform binary search on a sorted array
     bool binarySearch(int arr[], int n, int x) {`;
 export const edit_code = `
-        int left = 0 , right = n - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
+        int left = 0 , right = n - 1; 
+        while (left <= right) { 
+            int mid = left + (right - left) / 2; 
     
-            // Check if x is present at mid
-            if (arr[mid] == x)
-                return true;
+            // Check If x is present at mid 
+            if (arr[mid] == x) 
+                return true; 
     
-            // If x is greater, ignore the left half
-            if (arr[mid] < x)
-                left = mid + 1;
-            // If x is smaller, ignore the right half
-            else
-                right = mid - 1;`;
+            // If x is greater, ignore the left half 
+            if (arr[mid] < x) 
+                left = mid + 1; 
+            // If x is smaller, ignore the right half 
+            else 
+                right = mid - 1;`; 
 export const lower_static = `
         }
     
@@ -98,6 +98,50 @@ export const SelectColor = (text) => {
         return syntaxColors[cat].color;
       }
     }
-    return "blue";
+    return "red";
   }
 };
+
+
+export const cKeywords = [
+    "auto",
+    "break",
+    "case",
+    "char",
+    "const",
+    "continue",
+    "default",
+    "do",
+    "double",
+    "else",
+    "enum",
+    "extern",
+    "float",
+    "for",
+    "goto",
+    "if",
+    "inline",
+    "<=",
+    "==",
+    "<",
+    ">",
+    "-",
+    "+",
+    "/",
+    "int",
+    "long",
+    "register",
+    "restrict",
+    "short",
+    "signed",
+    "sizeof",
+    "static",
+    "struct",
+    "switch",
+    "typedef",
+    "union",
+    "unsigned",
+    "void",
+    "volatile",
+    "while"
+]

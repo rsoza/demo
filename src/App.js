@@ -15,8 +15,9 @@ function App() {
         width="100%"
         color="blackAlpha.700"
         // fontWeight="bold"
+        bg="transparent"
       >
-        <GridItem pl="2" area={"header"}>
+        <GridItem pl="2" bg="white" area={"header"}>
           <CodeBlock />
         </GridItem>
         <GridItem pl="2" bg="red" area={"nav"}>

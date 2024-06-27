@@ -1,64 +1,43 @@
-import React, { useState, useRef } from "react";
-import { Box, useOutsideClick, Select } from "@chakra-ui/react";
+import React, { useState  } from "react";
+import { Box } from "@chakra-ui/react";
 import { SelectColor } from "./syntax";
+import "../index.css";
 
 const TextDropdown = ({ code, triggerWords }) => {
   const [dropdownState, setDropdownState] = useState({
     isVisible: false,
     word: "",
   });
-  const ref = useRef();
 
-  //Close drop down
-  useOutsideClick({
-    ref: ref,
-    handler: () => setDropdownState({ ...dropdownState, isVisible: false }),
-  });
 
-  const handleWordChange = (word) => {
-    
-  };
 
-  const handleWordClick = (word, index, array) => {
-      if (triggerWords.includes(word)) {
-        console.log("index", index, array[index])
+  const handleWordClick = (word, event) => {
+    if (triggerWords.includes(word)) {
       setDropdownState({ isVisible: true, word });
-
     }
   };
 
   return (
     <Box position="relative">
       {code.split(" ").map((word, index, array) => (
-          <span
+        <span
           key={index}
-          onClick={() => handleWordClick(word, index, array)}
+          onClick={(event) => handleWordClick(word, event)}
           style={{
-              cursor: triggerWords.includes(word) ? "pointer" : "default",
-              color: triggerWords.includes(word) ? SelectColor(word) : "black",
-            }}
-            >
-          {word}{" "}
+            cursor: triggerWords.includes(word) ? "pointer" : "default",
+            color: triggerWords.includes(word) ? SelectColor(word) : "black",
+          }}
+        >
+          {triggerWords.includes(word) ? (
+            <select id="mySelect">
+                <option>{word}</option>
+                <option>hello</option>
+                <option>hello</option>
+            </select>
+          ) : (word)}{" "}
         </span>
       ))}
-      {dropdownState.isVisible && (
-        <Select
-          bg="white"
-          color="black"
-          placeholder={dropdownState.word}
-          ref={ref}
-        >
-          <option onClick={() => handleWordChange("option1")} style={{ color: "black" }} value="option1">
-            Option 1
-          </option>
-          <option onClick={() => handleWordChange("option2")} style={{ color: "black" }} value="option2">
-            Option 2
-          </option>
-          <option onClick={() => handleWordChange("option3")} style={{ color: "black" }} value="option3">
-            Option 3
-          </option>
-        </Select>
-      )}
+    
     </Box>
   );
 };
