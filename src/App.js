@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./App.css";
-import { ChakraProvider } from "@chakra-ui/react";
+import { Center, ChakraProvider } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import CodeBlock from "./CodeBlock";
 
@@ -9,23 +9,24 @@ function App() {
     <ChakraProvider>
       <Grid
         templateAreas={`"header header"
-                  "nav main"
+                  "main main"
                   "nav footer"`}
         gap="1"
+        width="100%"
         color="blackAlpha.700"
         // fontWeight="bold"
       >
-        <GridItem pl="2" bg="black" area={"header"}>
+        <GridItem pl="2" area={"header"}>
           <CodeBlock />
         </GridItem>
-        <GridItem pl="2" bg="pink.300" area={"nav"}>
-          Nav
+        <GridItem pl="2" bg="red" area={"nav"}>
+          <Center>Breaker {<br></br>}0</Center>
         </GridItem>
-        <GridItem pl="2" bg="green.300" area={"main"}>
-          Main
+        <GridItem pl="2" area={"main"}>
+          <Center>Scoreboard</Center>
         </GridItem>
-        <GridItem pl="200" bg="blue.300" area={"footer"}>
-          Footer
+        <GridItem pl="20" bg="blue.300" area={"footer"}>
+          <Center>Fixer {<br></br>}0</Center>
         </GridItem>
       </Grid>
     </ChakraProvider>
