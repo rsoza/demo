@@ -1,16 +1,41 @@
-const syntaxColors = {
+export const syntax = {
   keywords: {
     color: "blue",
     elements: [
+        "auto",
+    "break",
+    "case",
+    "char",
+    "const",
+    "continue",
+    "default",
+    "do",
+    "double",
     "else",
-      "int",
-      "return",
-      "if",
-      "while",
-      "for",
-      "bool",
-      "true",
-      "false",
+    "enum",
+    "extern",
+    "float",
+    "for",
+    "goto",
+    "if",
+    "inline",
+    "int",
+    "long",
+    "register",
+    "restrict",
+    "return",
+    "short",
+    "signed",
+    "sizeof",
+    "static",
+    "struct",
+    "switch",
+    "typedef",
+    "union",
+    "unsigned",
+    "void",
+    "volatile",
+    "while"
     ],
   },
   identifiers: {
@@ -85,17 +110,17 @@ export const lower_static = `
     }`;
 
 export const SelectColor = (text) => {
-  for (const cat in syntaxColors) {
-    if (syntaxColors[cat].regex) {
-      if (syntaxColors[cat].regex === text) {
-        return syntaxColors[cat].color;
+  for (const cat in syntax) {
+    if (syntax[cat].regex) {
+      if (syntax[cat].regex === text) {
+        return syntax[cat].color;
       }
     }
   }
-  for (const cat in syntaxColors) {
-    if (syntaxColors[cat].elements) {
-      if (syntaxColors[cat].elements.includes(text)) {
-        return syntaxColors[cat].color;
+  for (const cat in syntax) {
+    if (syntax[cat].elements) {
+      if (syntax[cat].elements.includes(text)) {
+        return syntax[cat].color;
       }
     }
     return "red";

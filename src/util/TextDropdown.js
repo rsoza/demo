@@ -1,15 +1,14 @@
-import React, { useState  } from "react";
+import React, { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import { SelectColor } from "./syntax";
 import "../index.css";
+import { syntax } from "./syntax";
 
 const TextDropdown = ({ code, triggerWords }) => {
   const [dropdownState, setDropdownState] = useState({
     isVisible: false,
     word: "",
   });
-
-
 
   const handleWordClick = (word, event) => {
     if (triggerWords.includes(word)) {
@@ -30,14 +29,21 @@ const TextDropdown = ({ code, triggerWords }) => {
         >
           {triggerWords.includes(word) ? (
             <select id="mySelect">
-                <option>{word}</option>
-                <option>hello</option>
-                <option>hello</option>
+              <option>{word}</option>
+              {syntax.operators.elements.includes(word) &&              
+              syntax.operators.elements.map((op) => (
+                <option>{op}</option>
+              ))}
+              {syntax.keywords.elements.includes(word) &&              
+              syntax.keywords.elements.map((op) => (
+                <option>{op}</option>
+              ))}
             </select>
-          ) : (word)}{" "}
+          ) : (
+            word
+          )}{" "}
         </span>
       ))}
-    
     </Box>
   );
 };

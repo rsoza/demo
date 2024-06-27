@@ -21,6 +21,7 @@ function CodeBlock() {
               whiteSpace="pre"
               fontSize={18}
               border="dotted"
+              borderColor="gainsboro"
               pb={3}
             >
               <TextDropdown code={edit_code} triggerWords={cKeywords} />
