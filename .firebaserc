@@ -1,5 +1,8 @@
 {
   "projects": {
+    "y": "fir-599e4",
     "default": "fir-599e4"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }
