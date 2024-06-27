@@ -1,27 +1,28 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Box } from "@chakra-ui/react";
 import { SelectColor } from "./syntax";
 import "../index.css";
 import { syntax } from "./syntax";
 
 const TextDropdown = ({ code, triggerWords }) => {
-  const [dropdownState, setDropdownState] = useState({
-    isVisible: false,
-    word: "",
-  });
+    let copy_code = code.split(" ");
+    const [selectedOption, setSelectedOption] = useState("");
 
-  const handleWordClick = (word, event) => {
-    if (triggerWords.includes(word)) {
-      setDropdownState({ isVisible: true, word });
-    }
+
+  const handleWordClick = (word,event, index) => {
+    setSelectedOption(event.target.value);
+    console.log("here", copy_code[index], event.target.value, index)
+    copy_code[index] = event.target.value;
+    console.log(copy_code);
   };
+
 
   return (
     <Box position="relative">
-      {code.split(" ").map((word, index, array) => (
+      {code.split(" ").map((word, index ) => (
         <span
           key={index}
-          onClick={(event) => handleWordClick(word, event)}
+          onClick={(event) => handleWordClick(word,event, index)}
           style={{
             cursor: triggerWords.includes(word) ? "pointer" : "default",
             color: triggerWords.includes(word) ? SelectColor(word) : "black",
@@ -32,12 +33,12 @@ const TextDropdown = ({ code, triggerWords }) => {
               <option>{word}</option>
               {syntax.operators.elements.includes(word) &&              
               syntax.operators.elements.map((op) => (
-                <option>{op}</option>
-              ))}
+                  <option key={op} value={op}>{op}</option>
+                ))}
               {syntax.keywords.elements.includes(word) &&              
-              syntax.keywords.elements.map((op) => (
-                <option>{op}</option>
-              ))}
+              syntax.keywords.elements.map((kw) => (
+                  <option key={kw} value={kw}>{kw}</option>
+                ))}
             </select>
           ) : (
             word

@@ -44,7 +44,7 @@ export const syntax = {
   },
   strings: {
     color: "green",
-    regex: /\".*?\"|'.*?'/g,
+    regex: /".*?"|'.*?'/g,
   },
   comments: {
     color: "gray",

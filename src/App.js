@@ -20,7 +20,7 @@ function App() {
         <GridItem pl="2" bg="white" area={"header"}>
           <CodeBlock />
         </GridItem>
-        <GridItem pl="2" bg="red" area={"nav"}>
+        <GridItem pl="2" bg="orange" area={"nav"}>
           <Center>Breaker {<br></br>}0</Center>
         </GridItem>
         <GridItem pl="2" area={"main"}>
