@@ -1,6 +1,7 @@
-import { Box, Button, Center, Code, Stack } from "@chakra-ui/react";
+import { Box, Button, Center, Code, Stack, Text } from "@chakra-ui/react";
 import { RepeatIcon } from "@chakra-ui/icons";
-import TextDropdown from "./util/TextDropdown";
+import BreakerTurn from "./util/TextDropdown";
+import FixerTurn from "./util/FixerTurn";
 import { motion } from "framer-motion";
 import {
   upper_static,
@@ -10,10 +11,23 @@ import {
 } from "./util/syntax";
 import { useState } from "react";
 
-function CodeBlock({playing, setIsPlaying}) {
+
+/* 
+Sequence of game LOGIC::
+
+playing -> false -> PLAY -> true -> STOP button appears
+stopGame -> false -> STOP -> true -> FIX CODE button appears
+fixerStart -> false -> FIX CODE -> true -> TIMER appears
+
+
+*/
+
+function CodeBlock({playing, setIsPlaying, stopGame, setStop}) {
+  const [copy_code, setCopyCode] = useState("");
   const [showUnitTest, setShowUnitTest] = useState(false);
   const [resetSelected, setResetSelected] = useState(false);
   const [moveCount, setMoveCount] = useState(3);
+  const [fixerStart, setFixerTime] = useState(false);
 
   const resetCode = () => {
     setResetSelected(!resetSelected);
@@ -21,11 +35,15 @@ function CodeBlock({playing, setIsPlaying}) {
     setMoveCount(3);
   };
 
+  const handleStop = () => {
+    setStop(true);
+  };
+
   return (
     <>
         <Stack pt={2}>
           <Center>
-          {playing ? (
+          {playing && !stopGame? (
             <Stack direction="row" spacing={2}>
               <Button
                 hsize="lg"
@@ -34,7 +52,7 @@ function CodeBlock({playing, setIsPlaying}) {
                 border="2px"
                 borderColor="red.500"
                 colorScheme="red"
-                onClick={() => {setIsPlaying(!playing)}}
+                onClick={() => handleStop()}
                 >
                 STOP
               </Button>
@@ -54,7 +72,20 @@ function CodeBlock({playing, setIsPlaying}) {
                 </Button>
               )}
             </Stack>
-          ) : (
+          ) : stopGame && !fixerStart ?
+          (
+            <Button
+            hsize="lg"
+            height="48px"
+            width="200px"
+            border="2px"
+            borderColor="skyblue"
+            colorScheme="blue"
+            onClick={() => setFixerTime(true)}
+            >
+              FIX CODE
+            </Button>
+          ) : !playing ? (
             <Button
             hsize="lg"
             height="48px"
@@ -62,10 +93,22 @@ function CodeBlock({playing, setIsPlaying}) {
             border="2px"
             borderColor="green"
             colorScheme="green"
-            onClick={() => setIsPlaying(!playing)}
+            onClick={() => setIsPlaying(true)}
             >
               PLAY
             </Button>
+          ):
+          (
+            <Button
+                hsize="lg"
+                height="48px"
+                width="200px"
+                colorScheme="blue"
+                variant="flushed"
+                cursor="default"
+                >
+                TIMER
+              </Button>
           )}
           </Center>
           <Box>
@@ -83,18 +126,28 @@ function CodeBlock({playing, setIsPlaying}) {
                     whiteSpace="pre"
                     border="dotted"
                     borderColor="gainsboro"
-                    pb={3}
+                    pb={2}
                   >
-                    {playing ? (
-                      <TextDropdown
+                    {(playing && !stopGame) ? (
+                      <BreakerTurn
                         code={edit_code}
                         triggerWords={cKeywords}
                         setMoveCount={setMoveCount}
                         moveCount={moveCount}
+                        setCopyCode={setCopyCode}
                       />
-                    ) : (
+                    ) : (stopGame && !fixerStart) ? (
+                      <Center>
+                        <Text fontSize={20} fontWeight="bold" p={2}>
+                      Are you ready to fix the code?
+                        </Text>
+                      </Center>
+                    ) : !playing ? (
                       edit_code
-                    )}
+                    ): (
+                      <FixerTurn />
+                    )
+                    }
                   </Code>
                   {showUnitTest ? (
                     <>
@@ -104,6 +157,7 @@ function CodeBlock({playing, setIsPlaying}) {
                       whiteSpace="pre-wrap"
                       onClick={() => setShowUnitTest(!showUnitTest)}
                       overflowWrap="break-word"
+                      color="grey"
                       >
                         {lower_static}
                       </Code>
@@ -111,7 +165,7 @@ function CodeBlock({playing, setIsPlaying}) {
                     </>
                   ) : (
                     <>
-                      <Code bg="transparent" whiteSpace="pre">
+                      <Code bg="transparent" whiteSpace="pre" color="grey">
                         {lower_static.substring(0, 100)}
                       </Code>
                       <Center>

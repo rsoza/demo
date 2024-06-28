@@ -1,14 +1,15 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import { SelectColor } from "./syntax";
-import { syntax } from "./syntax";
 import "../index.css";
+import { syntax } from "./syntax";
 
-const TextDropdown = ({
+const BreakerTurn = ({
   code,
   triggerWords,
   setMoveCount,
-  moveCount
+  moveCount,
+  setCopyCode,
 }) => {
   let copy_code = code.split(" ");
   
@@ -17,6 +18,7 @@ const TextDropdown = ({
       if (moveCount > 0) {
         setMoveCount(moveCount - 1);
         copy_code[index] = event.target.value;
+        setCopyCode(copy_code.join(' '));
       }
     }
     
@@ -61,4 +63,4 @@ const TextDropdown = ({
   );
 };
 
-export default TextDropdown;
+export default BreakerTurn;
