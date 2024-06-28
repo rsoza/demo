@@ -1,6 +1,7 @@
 import { Center, ChakraProvider, Text, Box, Stack } from "@chakra-ui/react";
 import CodeBlock from "./CodeBlock";
 import React, { useState } from "react";
+import { BreakerScoreBoard, FixerScoreboard } from "./util/components";
 
 function App() {
   const [playing, setIsPlaying] = useState(false);
@@ -8,40 +9,27 @@ function App() {
 
   return (
     <ChakraProvider>
-      <div className="container">
+          <Center>
+            <Text fontSize="x-large" fontWeight="bold">
+              Scoreboard
+            </Text>
+          </Center>
 
-      <Box>
-        <Center>
-          <Text fontSize="x-large" fontWeight="bold">
-            Scoreboard
-          </Text>
-        </Center>
-        <Center>
-          <Stack direction="row" width="100%">
-            <Box p={2} width="100%" bg={stopGame ? "transparent" : "orange"}>
-              <Center>
-                <Text color={stopGame ? "transparent" : "white"}>Breaker {<br></br>}0</Text>
-              </Center>
-            </Box>
-            <Box p={2} width="100%" bg={playing && !stopGame ? "transparent" : "skyblue"}>
-              <Center>
-                <Text color={playing && !stopGame ? "transparent" : "white"}>
-                  Fixer {<br></br>}0
-                </Text>
-              </Center>
-            </Box>
-          </Stack>
-        </Center>
-        <Box p={10}>
-          <CodeBlock
-            setIsPlaying={setIsPlaying}
-            playing={playing}
-            stopGame={stopGame}
-            setStop={setStop}
+          <Center>
+            <Stack direction="row">
+              <BreakerScoreBoard stopGame={stopGame} />
+              <FixerScoreboard playing={playing} stopGame={stopGame} />
+            </Stack>
+          </Center>
+
+          <Box p={10}>
+            <CodeBlock
+              setIsPlaying={setIsPlaying}
+              playing={playing}
+              stopGame={stopGame}
+              setStop={setStop}
             />
-        </Box>
-      </Box>
-            </div>
+          </Box>
     </ChakraProvider>
   );
 }
