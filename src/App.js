@@ -1,7 +1,6 @@
 import { Center, ChakraProvider, Text, Box, Stack } from "@chakra-ui/react";
 import CodeBlock from "./CodeBlock";
 import React, { useState } from "react";
-import "./App.css";
 
 function App() {
   const [playing, setIsPlaying] = useState(false);
@@ -9,7 +8,9 @@ function App() {
 
   return (
     <ChakraProvider>
-      <Box width="100%">
+      <div className="container">
+
+      <Box>
         <Center>
           <Text fontSize="x-large" fontWeight="bold">
             Scoreboard
@@ -37,9 +38,10 @@ function App() {
             playing={playing}
             stopGame={stopGame}
             setStop={setStop}
-          />
+            />
         </Box>
       </Box>
+            </div>
     </ChakraProvider>
   );
 }
