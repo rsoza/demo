@@ -1,29 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box } from "@chakra-ui/react";
 import { SelectColor } from "./syntax";
-import "../index.css";
 import { syntax } from "./syntax";
+import "../index.css";
 
 const TextDropdown = ({
   code,
   triggerWords,
   setMoveCount,
-  moveCount,
-  resetSelected,
+  moveCount
 }) => {
   let copy_code = code.split(" ");
-  const [selectedOption, setSelectedOption] = useState("");
-
+  
   const handleWordClick = (word, event, index) => {
-    if (copy_code[index] !== event.target.value) {
+    if (copy_code[index] !== event.target.value && event.target.value != null) {
       if (moveCount > 0) {
         setMoveCount(moveCount - 1);
         copy_code[index] = event.target.value;
       }
     }
-    setSelectedOption(event.target.value);
-    // console.log("here", copy_code[index], event.target.value, index)
-    // console.log(copy_code);
+    
   };
 
   return (

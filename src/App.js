@@ -1,16 +1,10 @@
-import {
-  Center,
-  ChakraProvider,
-  Flex,
-  Text,
-  Box,
-  Stack,
-} from "@chakra-ui/react";
+import { Center, ChakraProvider, Text, Box, Stack } from "@chakra-ui/react";
 import CodeBlock from "./CodeBlock";
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [playing, setIsPlaying] = useState(false);
   return (
     <ChakraProvider>
       <Box width="100%">
@@ -21,16 +15,23 @@ function App() {
         </Center>
         <Center>
           <Stack direction="row" width="100%">
-            <Box heigh={48} width="100%" bg="orange">
-              <Center>Breaker {<br></br>}0</Center>
+            <Box p={2} width="100%" bg="orange">
+              <Center>
+                <Text color="white">
+
+                Breaker {<br></br>}0
+                </Text>
+                </Center>
             </Box>
-            <Box heigh={48} width="100%" bg="skyblue">
-              <Center>Fixer {<br></br>}0</Center>
+            <Box p={2} width="100%" bg={playing ? "transparent" : "skyblue"}>
+              <Center>
+                <Text color={playing ? "transparent" : "white"}>Fixer {<br></br>}0</Text>
+              </Center>
             </Box>
           </Stack>
         </Center>
-        <Box>
-            <CodeBlock />
+        <Box p={10}>
+          <CodeBlock setIsPlaying={setIsPlaying} playing={playing} />
         </Box>
       </Box>
     </ChakraProvider>

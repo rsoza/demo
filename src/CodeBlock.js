@@ -1,8 +1,7 @@
-import { motion } from "framer-motion";
-import { Box, Button, Center, Code, Flex, Stack } from "@chakra-ui/react";
+import { Box, Button, Center, Code, Stack } from "@chakra-ui/react";
 import { RepeatIcon } from "@chakra-ui/icons";
-
 import TextDropdown from "./util/TextDropdown";
+import { motion } from "framer-motion";
 import {
   upper_static,
   edit_code,
@@ -11,17 +10,23 @@ import {
 } from "./util/syntax";
 import { useState } from "react";
 
-function CodeBlock() {
-  const [playing, setIsPlaying] = useState(false);
+function CodeBlock({playing, setIsPlaying}) {
   const [showUnitTest, setShowUnitTest] = useState(false);
   const [resetSelected, setResetSelected] = useState(false);
   const [moveCount, setMoveCount] = useState(3);
 
+  const resetCode = () => {
+    setResetSelected(!resetSelected);
+    setIsPlaying(false);
+    setMoveCount(3);
+  };
+
   return (
     <>
-        <Stack pt={10} pl={2} >
+        <Stack pt={2}>
+          <Center>
           {playing ? (
-            <Stack direction="row" spacing={10}>
+            <Stack direction="row" spacing={2}>
               <Button
                 hsize="lg"
                 height="48px"
@@ -29,8 +34,8 @@ function CodeBlock() {
                 border="2px"
                 borderColor="red.500"
                 colorScheme="red"
-                onClick={() => setIsPlaying(!playing)}
-              >
+                onClick={() => {setIsPlaying(!playing)}}
+                >
                 STOP
               </Button>
               <Button
@@ -40,28 +45,29 @@ function CodeBlock() {
                 colorScheme="blue"
                 variant="flushed"
                 cursor="default"
-              >
+                >
                 {moveCount} MOVES LEFT
               </Button>
               {moveCount < 3 && (
-                <Button onClick={() => setResetSelected(!resetSelected)}>
+                <Button onClick={() => resetCode()}>
                   <RepeatIcon size="x-large" />
                 </Button>
               )}
             </Stack>
           ) : (
             <Button
-              hsize="lg"
-              height="48px"
-              width="200px"
-              border="2px"
-              borderColor="green"
-              colorScheme="green"
-              onClick={() => setIsPlaying(!playing)}
+            hsize="lg"
+            height="48px"
+            width="200px"
+            border="2px"
+            borderColor="green"
+            colorScheme="green"
+            onClick={() => setIsPlaying(!playing)}
             >
               PLAY
             </Button>
           )}
+          </Center>
           <Box>
             <Center>
               <motion.div
@@ -85,7 +91,6 @@ function CodeBlock() {
                         triggerWords={cKeywords}
                         setMoveCount={setMoveCount}
                         moveCount={moveCount}
-                        resetSelected={resetSelected}
                       />
                     ) : (
                       edit_code
@@ -93,13 +98,16 @@ function CodeBlock() {
                   </Code>
                   {showUnitTest ? (
                     <>
+                    <Box>
                       <Code
-                        bg="transparent"
-                        whiteSpace="pre"
-                        onClick={() => setShowUnitTest(!showUnitTest)}
+                      bg="transparent"
+                      whiteSpace="pre-wrap"
+                      onClick={() => setShowUnitTest(!showUnitTest)}
+                      overflowWrap="break-word"
                       >
                         {lower_static}
                       </Code>
+                        </Box>
                     </>
                   ) : (
                     <>

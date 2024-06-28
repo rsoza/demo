@@ -83,10 +83,12 @@ export const syntax = {
 };
 
 export const upper_static = `
+    #include <stdio.h>
     #include <stdbool.h>
     
     // Function to perform binary search on a sorted array
     bool binarySearch(int arr[], int n, int x) {`;
+    
 export const edit_code = `
         int left = 0 , right = n - 1; 
         while (left <= right) { 
@@ -103,10 +105,7 @@ export const edit_code = `
             else 
                 right = mid - 1;`;
 export const lower_static = `
-        }
-    
-        // If we reach here, the element was not present
-        return false;
+          }
             // If we reach here, the element was not present
     return false;
     }
