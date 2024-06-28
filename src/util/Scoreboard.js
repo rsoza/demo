@@ -1,25 +1,28 @@
-import { Center, Text, Box, Stack } from "@chakra-ui/react";
+import { Center, Box, Stack, Code } from "@chakra-ui/react";
 import React from "react";
 
 export const BreakerScoreBoard = ({ stopGame }) => {
   return (
     <div>
-      <Box p={2} width="150px" bg={stopGame ? "transparent" : "orange"}>
+      <Box p={2} width="150px" bg={stopGame ? "transparent" : "orange.300"}>
         <Center>
           <Stack>
-            <Text
+            <Code
+            bg="transparent"
+
               fontSize="xx-large"
               color={stopGame ? "transparent" : "white"}
             >
               Breaker
-            </Text>
+            </Code>
             <Center>
-              <Text
+              <Code
                 fontSize="xx-large"
+            bg="transparent"
                 color={stopGame ? "transparent" : "white"}
               >
                 0
-              </Text>
+              </Code>
             </Center>
           </Stack>
         </Center>
@@ -33,23 +36,25 @@ export const FixerScoreboard = ({ stopGame, playing }) => {
     <Box
       p={2}
       width="150px"
-      bg={playing && !stopGame ? "transparent" : "skyblue"}
+      bg={playing && !stopGame ? "transparent" : "blue.200"}
     >
       <Center>
         <Stack>
-          <Text
+          <Code
             fontSize="xx-large"
+            bg="transparent"
             color={playing && !stopGame ? "transparent" : "white"}
           >
             Fixer
-          </Text>
+          </Code>
           <Center>
-            <Text
+            <Code
               fontSize="xx-large"
+              bg="transparent"
               color={playing && !stopGame ? "transparent" : "white"}
             >
               0
-            </Text>
+            </Code>
           </Center>
         </Stack>
       </Center>

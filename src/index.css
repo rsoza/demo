@@ -2,6 +2,11 @@ body {
   margin: 0; 
   padding: 10px; 
 }
+/* .chakra-ui-light {
+  background-color: rgb(20, 20, 20);
+  color:white;
+} */
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

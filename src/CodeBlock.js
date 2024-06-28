@@ -1,5 +1,4 @@
 import { Box, Button, Center, Code, Stack, Text } from "@chakra-ui/react";
-import { RepeatIcon } from "@chakra-ui/icons";
 import BreakerTurn from "./util/TextDropdown";
 import FixerTurn from "./util/FixerTurn";
 import { motion } from "framer-motion";
@@ -10,19 +9,9 @@ import {
   cKeywords,
 } from "./util/syntax";
 import { useState } from "react";
+import CustomButtons from "./util/Buttons";
 
-
-/* 
-Sequence of game LOGIC::
-
-playing -> false -> PLAY -> true -> STOP button appears
-stopGame -> false -> STOP -> true -> FIX CODE button appears
-fixerStart -> false -> FIX CODE -> true -> TIMER appears
-
-
-*/
-
-function CodeBlock({playing, setIsPlaying, stopGame, setStop}) {
+function CodeBlock({ playing, setIsPlaying, stopGame, setStop }) {
   const [copy_code, setCopyCode] = useState("");
   const [showUnitTest, setShowUnitTest] = useState(false);
   const [resetSelected, setResetSelected] = useState(false);
@@ -37,153 +26,94 @@ function CodeBlock({playing, setIsPlaying, stopGame, setStop}) {
 
   const handleStop = () => {
     setStop(true);
+    console.log("pass code to fixer turn", copy_code);
   };
 
   return (
     <>
-        <Stack pt={2}>
+      <Stack pt={2}>
+        <CustomButtons
+          playing={playing}
+          stopGame={stopGame}
+          handleStop={handleStop}
+          moveCount={moveCount}
+          resetCode={resetCode}
+          fixerStart={fixerStart}
+          setFixerTime={setFixerTime}
+          setIsPlaying={setIsPlaying}
+        />
+        <Box>
           <Center>
-          {playing && !stopGame? (
-            <Stack direction="row" spacing={2}>
-              <Button
-                hsize="lg"
-                height="48px"
-                width="200px"
-                border="2px"
-                borderColor="red.500"
-                colorScheme="red"
-                onClick={() => handleStop()}
-                >
-                STOP
-              </Button>
-              <Button
-                hsize="lg"
-                height="48px"
-                width="200px"
-                colorScheme="blue"
-                variant="flushed"
-                cursor="default"
-                >
-                {moveCount} MOVES LEFT
-              </Button>
-              {moveCount < 3 && (
-                <Button onClick={() => resetCode()}>
-                  <RepeatIcon size="x-large" />
-                </Button>
-              )}
-            </Stack>
-          ) : stopGame && !fixerStart ?
-          (
-            <Button
-            hsize="lg"
-            height="48px"
-            width="200px"
-            border="2px"
-            borderColor="skyblue"
-            colorScheme="blue"
-            onClick={() => setFixerTime(true)}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { delay: 0.5 } }}
             >
-              FIX CODE
-            </Button>
-          ) : !playing ? (
-            <Button
-            hsize="lg"
-            height="48px"
-            width="200px"
-            border="2px"
-            borderColor="green"
-            colorScheme="green"
-            onClick={() => setIsPlaying(true)}
-            >
-              PLAY
-            </Button>
-          ):
-          (
-            <Button
-                hsize="lg"
-                height="48px"
-                width="200px"
-                colorScheme="blue"
-                variant="flushed"
-                cursor="default"
+              <Stack>
+                <Code bg="transparent" whiteSpace="pre" color="grey">
+                  {upper_static}
+                </Code>
+                <Code
+                  bg="transparent"
+                  whiteSpace="pre"
+                  border="dotted"
+                  borderColor="grey"
+                  pb={2}
                 >
-                TIMER
-              </Button>
-          )}
-          </Center>
-          <Box>
-            <Center>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.5 } }}
-              >
-                <Stack>
-                  <Code bg="transparent" whiteSpace="pre">
-                    {upper_static}
-                  </Code>
-                  <Code
-                    bg="transparent"
-                    whiteSpace="pre"
-                    border="dotted"
-                    borderColor="gainsboro"
-                    pb={2}
-                  >
-                    {(playing && !stopGame) ? (
-                      <BreakerTurn
-                        code={edit_code}
-                        triggerWords={cKeywords}
-                        setMoveCount={setMoveCount}
-                        moveCount={moveCount}
-                        setCopyCode={setCopyCode}
-                      />
-                    ) : (stopGame && !fixerStart) ? (
-                      <Center>
-                        <Text fontSize={20} fontWeight="bold" p={2}>
-                      Are you ready to fix the code?
-                        </Text>
-                      </Center>
-                    ) : !playing ? (
-                      edit_code
-                    ): (
-                      <FixerTurn />
-                    )
-                    }
-                  </Code>
-                  {showUnitTest ? (
-                    <>
+                  {playing && !stopGame ? (
+                    <BreakerTurn
+                      code={edit_code}
+                      triggerWords={cKeywords}
+                      setMoveCount={setMoveCount}
+                      moveCount={moveCount}
+                      setCopyCode={setCopyCode}
+                    />
+                  ) : stopGame && !fixerStart ? (
+                    <Center>
+                      <Text fontSize={20} fontWeight="bold" p={2}>
+                        Are you ready to fix the code?
+                      </Text>
+                    </Center>
+                  ) : !playing ? (
+                    edit_code
+                  ) : (
+                    <FixerTurn />
+                  )}
+                </Code>
+                {showUnitTest ? (
+                  <>
                     <Box>
                       <Code
-                      bg="transparent"
-                      whiteSpace="pre-wrap"
-                      onClick={() => setShowUnitTest(!showUnitTest)}
-                      overflowWrap="break-word"
-                      color="grey"
+                        bg="transparent"
+                        whiteSpace="pre-wrap"
+                        onClick={() => setShowUnitTest(!showUnitTest)}
+                        overflowWrap="break-word"
+                        color="grey"
                       >
                         {lower_static}
                       </Code>
-                        </Box>
-                    </>
-                  ) : (
-                    <>
-                      <Code bg="transparent" whiteSpace="pre" color="grey">
-                        {lower_static.substring(0, 100)}
-                      </Code>
-                      <Center>
-                        <Button
-                          variant="transparent"
-                          color="blue"
-                          onClick={() => setShowUnitTest(!showUnitTest)}
-                        >
-                          Show Unit Test
-                        </Button>
-                      </Center>
-                    </>
-                  )}
-                </Stack>
-              </motion.div>
-            </Center>
-          </Box>
-        </Stack>
+                    </Box>
+                  </>
+                ) : (
+                  <>
+                    <Code bg="transparent" whiteSpace="pre" color="grey">
+                      {lower_static.substring(0, 100)}
+                    </Code>
+                    <Center>
+                      <Button
+                        variant="transparent"
+                        color="blue"
+                        onClick={() => setShowUnitTest(!showUnitTest)}
+                      >
+                        Show Unit Test
+                      </Button>
+                    </Center>
+                  </>
+                )}
+              </Stack>
+            </motion.div>
+          </Center>
+        </Box>
+      </Stack>
     </>
   );
 }
