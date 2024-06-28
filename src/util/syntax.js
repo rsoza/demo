@@ -2,40 +2,40 @@ export const syntax = {
   keywords: {
     color: "blue",
     elements: [
-        "auto",
-    "break",
-    "case",
-    "char",
-    "const",
-    "continue",
-    "default",
-    "do",
-    "double",
-    "else",
-    "enum",
-    "extern",
-    "float",
-    "for",
-    "goto",
-    "if",
-    "inline",
-    "int",
-    "long",
-    "register",
-    "restrict",
-    "return",
-    "short",
-    "signed",
-    "sizeof",
-    "static",
-    "struct",
-    "switch",
-    "typedef",
-    "union",
-    "unsigned",
-    "void",
-    "volatile",
-    "while"
+      "auto",
+      "break",
+      "case",
+      "char",
+      "const",
+      "continue",
+      "default",
+      "do",
+      "double",
+      "else",
+      "enum",
+      "extern",
+      "float",
+      "for",
+      "goto",
+      "if",
+      "inline",
+      "int",
+      "long",
+      "register",
+      "restrict",
+      "return",
+      "short",
+      "signed",
+      "sizeof",
+      "static",
+      "struct",
+      "switch",
+      "typedef",
+      "union",
+      "unsigned",
+      "void",
+      "volatile",
+      "while",
     ],
   },
   identifiers: {
@@ -101,13 +101,46 @@ export const edit_code = `
                 left = mid + 1; 
             // If x is smaller, ignore the right half 
             else 
-                right = mid - 1;`; 
+                right = mid - 1;`;
 export const lower_static = `
         }
     
         // If we reach here, the element was not present
         return false;
-    }`;
+            // If we reach here, the element was not present
+    return false;
+    }
+
+    // Function to test the binary search algorithm
+    bool testBinarySearch() {
+        int arr[] = {2, 3, 4, 10, 40};
+        int n = sizeof(arr) / sizeof(arr[0]);
+        int x = 10;  // Element to search for
+
+        // Validate if binary search finds the element correctly
+        if (binarySearch(arr, n, x) != true) {
+            return false;
+        }
+
+        x = 5;  // Element to search for which is not in the array
+
+        // Validate if binary search correctly identifies the absence of the element
+        if (binarySearch(arr, n, x) != false) {
+            return false;
+        }
+
+        return true;
+    }
+
+    // Main function to run the test
+    int main() {
+        if (testBinarySearch()) {
+           printf("Binary search algorithm works correctly. Fixer wins!");
+        } else {
+           printf("Binary search algorithm does not work correctly. Breaker wins!");
+        }
+    }
+        }`;
 
 export const SelectColor = (text) => {
   for (const cat in syntax) {
@@ -127,46 +160,45 @@ export const SelectColor = (text) => {
   }
 };
 
-
 export const cKeywords = [
-    "auto",
-    "break",
-    "case",
-    "char",
-    "const",
-    "continue",
-    "default",
-    "do",
-    "double",
-    "else",
-    "enum",
-    "extern",
-    "float",
-    "for",
-    "goto",
-    "if",
-    "inline",
-    "<=",
-    "==",
-    "<",
-    ">",
-    "-",
-    "+",
-    "/",
-    "int",
-    "long",
-    "register",
-    "restrict",
-    "short",
-    "signed",
-    "sizeof",
-    "static",
-    "struct",
-    "switch",
-    "typedef",
-    "union",
-    "unsigned",
-    "void",
-    "volatile",
-    "while"
-]
+  "auto",
+  "break",
+  "case",
+  "char",
+  "const",
+  "continue",
+  "default",
+  "do",
+  "double",
+  "else",
+  "enum",
+  "extern",
+  "float",
+  "for",
+  "goto",
+  "if",
+  "inline",
+  "<=",
+  "==",
+  "<",
+  ">",
+  "-",
+  "+",
+  "/",
+  "int",
+  "long",
+  "register",
+  "restrict",
+  "short",
+  "signed",
+  "sizeof",
+  "static",
+  "struct",
+  "switch",
+  "typedef",
+  "union",
+  "unsigned",
+  "void",
+  "volatile",
+  "while",
+];

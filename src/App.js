@@ -1,35 +1,38 @@
-import * as React from "react";
-import "./App.css";
-import { Center, ChakraProvider } from "@chakra-ui/react";
-import { Grid, GridItem } from "@chakra-ui/react";
+import {
+  Center,
+  ChakraProvider,
+  Flex,
+  Text,
+  Box,
+  Stack,
+} from "@chakra-ui/react";
 import CodeBlock from "./CodeBlock";
+import React from "react";
+import "./App.css";
 
 function App() {
   return (
     <ChakraProvider>
-      <Grid
-        templateAreas={`"header header"
-                  "main main"
-                  "nav footer"`}
-        gap="1"
-        width="100%"
-        color="blackAlpha.700"
-        // fontWeight="bold"
-        bg="transparent"
-      >
-        <GridItem pl="2" bg="white" area={"header"}>
-          <CodeBlock />
-        </GridItem>
-        <GridItem pl="2" bg="orange" area={"nav"}>
-          <Center>Breaker {<br></br>}0</Center>
-        </GridItem>
-        <GridItem pl="2" area={"main"}>
-          <Center>Scoreboard</Center>
-        </GridItem>
-        <GridItem pl="20" bg="blue.300" area={"footer"}>
-          <Center>Fixer {<br></br>}0</Center>
-        </GridItem>
-      </Grid>
+      <Box width="100%">
+        <Center>
+          <Text fontSize="x-large" fontWeight="bold">
+            Scoreboard
+          </Text>
+        </Center>
+        <Center>
+          <Stack direction="row" width="100%">
+            <Box heigh={48} width="100%" bg="orange">
+              <Center>Breaker {<br></br>}0</Center>
+            </Box>
+            <Box heigh={48} width="100%" bg="skyblue">
+              <Center>Fixer {<br></br>}0</Center>
+            </Box>
+          </Stack>
+        </Center>
+        <Box>
+            <CodeBlock />
+        </Box>
+      </Box>
     </ChakraProvider>
   );
 }
