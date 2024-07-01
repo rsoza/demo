@@ -1,8 +1,7 @@
 import React from "react";
-import FixerTurn from "./FixerTurn";
-import BreakerTurn from "./BreakerTurn";
+import Turn from "./Turn";
 
-function Game({
+function BreakerVsFixer({
   playing,
   stopGame,
   edit_code,
@@ -13,14 +12,13 @@ function Game({
   len,
   codeLines,
   lenEdit,
-  fixerStart,
   iterateThroughCode,
 }) {
   return (
     <div>
-      {(playing && !stopGame) || (!fixerStart && stopGame) ? (
+      {(playing && !stopGame) ? (
         <>
-          <BreakerTurn
+          <Turn
             code={edit_code}
             triggerWords={cKeywords}
             setMoveCount={setMoveCount}
@@ -30,17 +28,31 @@ function Game({
             codeLines={codeLines}
             lenEdit={lenEdit}
             stopGame={stopGame}
+            breakersTurn={true}
           />
         </>
-      ) : // ) : stopGame && !fixerStart ? (
-      //   <p>{iterateThroughCode(codeLines.join(" "), len, lenEdit)}</p>
+      ) : 
       !playing ? (
         iterateThroughCode(edit_code, len, lenEdit)
       ) : (
-        <FixerTurn />
-      )}
+        <>
+        <Turn
+            code={edit_code}
+            triggerWords={cKeywords}
+            setMoveCount={setMoveCount}
+            moveCount={moveCount}
+            setCodeLines={setCodeLines}
+            len={len}
+            codeLines={codeLines}
+            lenEdit={lenEdit}
+            stopGame={stopGame}
+            breakersTurn={false}
+            />
+            </>
+      )
+    }
     </div>
   );
 }
 
-export default Game;
+export default BreakerVsFixer;

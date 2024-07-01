@@ -61,7 +61,7 @@ function CustomButtons({
             </motion.button>
           )}
           <motion.div
-            className="button"
+            className="button dis"
             initial={{ opacity: 0 }}
             exit={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -74,7 +74,9 @@ function CustomButtons({
           </motion.div>
         </div>
       ) : stopGame && !fixerStart ? (
-        <motion.button className="button">FIX CODE</motion.button>
+        <motion.button className="button" onClick={() => setFixerTime(true)}>
+          FIX CODE
+        </motion.button>
       ) : !playing ? (
         <motion.button
           className="button"
@@ -107,7 +109,7 @@ function CustomButtons({
           PLAY
         </motion.button>
       ) : (
-        <motion.button>TIMER</motion.button>
+        <motion.div className="button dis">TIMER</motion.div>
       )}
     </div>
   );

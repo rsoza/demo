@@ -3,7 +3,7 @@ import { SelectColor } from "../util/syntax";
 import "../index.css";
 import { syntax } from "../util/syntax";
 
-const BreakerTurn = ({
+const Trun = ({
   code,
   triggerWords,
   setMoveCount,
@@ -13,6 +13,7 @@ const BreakerTurn = ({
   len,
   lenEdit,
   stopGame,
+  breakersTurn
 }) => {
   const handleWordClick = (word, event, indexOfSelectedWord, lineNumber) => {
     console.log("event", event);
@@ -51,7 +52,7 @@ const BreakerTurn = ({
 
   return (
     <div>
-      {moveCount === 0 || stopGame ? (
+      {(moveCount === 0 || (stopGame && breakersTurn)) ? (
         <div>
           {codeLines.map((line, key) => (
             <div key={key}>
@@ -102,4 +103,4 @@ const BreakerTurn = ({
   );
 };
 
-export default BreakerTurn;
+export default Trun;

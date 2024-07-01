@@ -9,7 +9,6 @@ function App() {
   const [playing, setIsPlaying] = useState();
   const [stopGame, setStop] = useState();
   const [codeLines, setCodeLines] = useState(edit_code.split(/\r?\n|\r|\n/g));
-  // const [resetSelected, setResetSelected] = useState(false);
   const [moveCount, setMoveCount] = useState(3);
   const [fixerStart, setFixerTime] = useState();
 

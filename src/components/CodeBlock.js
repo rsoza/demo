@@ -1,4 +1,4 @@
-import Game from "./Game";
+import BreakerVsFixer from "./BreakerVsFixer";
 import { motion } from "framer-motion";
 import {
   upper_static,
@@ -42,14 +42,14 @@ function CodeBlock({
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.5 } }}
-      style={{ filter: stopGame ? "blur(4px)" : "none" }}
+      style={{ filter: !fixerStart && stopGame ? "blur(4px)" : "none" }}
     >
       <br></br>
       <pre>
         <code>
           {iterateThroughCode(upper_static, 0, len)}
           {
-            <Game
+            <BreakerVsFixer
               playing={playing}
               stopGame={stopGame}
               edit_code={edit_code}
