@@ -16,6 +16,7 @@ function CodeBlock({
   setMoveCount,
   fixerStart,
   codeLines,
+  setCompileCode,
 }) {
   const [showUnitTest, setShowUnitTest] = useState(false);
   const len = upper_static.split(/\r?\n|\r|\n/g).length;
@@ -61,6 +62,7 @@ function CodeBlock({
                 lenEdit={lenEdit}
                 stopGame={stopGame}
                 breakersTurn={true}
+                setCompileCode={setCompileCode}
               />
             </>
           ) : !playing ? (
@@ -78,6 +80,7 @@ function CodeBlock({
                 lenEdit={lenEdit}
                 stopGame={stopGame}
                 breakersTurn={false}
+                setCompileCode={setCompileCode}
               />
             </>
           )}

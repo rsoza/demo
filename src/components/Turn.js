@@ -1,5 +1,5 @@
 import React from "react";
-import { SelectColor } from "../util/syntax";
+import { SelectColor, lower_static, upper_static } from "../util/syntax";
 import "../index.css";
 import { syntax } from "../util/syntax";
 
@@ -13,16 +13,17 @@ const Trun = ({
   len,
   lenEdit,
   stopGame,
-  breakersTurn
+  breakersTurn,
+  setCompileCode
 }) => {
-  const handleWordClick = (word, event, indexOfSelectedWord, lineNumber) => {
-    console.log("event", event);
+  const handleWordClick = (event, indexOfSelectedWord, lineNumber) => {
     let selectedLine = codeLines[lineNumber].split(" ");
     if (selectedLine[indexOfSelectedWord] !== event.target.value && event.target.value != null&& moveCount > 0) {
       selectedLine[indexOfSelectedWord] = event.target.value;
       codeLines[lineNumber] = selectedLine.join(" ");
       setCodeLines(codeLines);
       setMoveCount(moveCount - 1);
+      setCompileCode(upper_static+("\n")+codeLines.join("\n")+("\n")+lower_static);
     }
   };
   
@@ -81,7 +82,7 @@ const Trun = ({
                     <select
                       key={index}
                       onClick={(event) =>
-                        handleWordClick(word, event, index, key)
+                        handleWordClick(event, index, key)
                       }
                       style={{
                         color: SelectColor(word),
