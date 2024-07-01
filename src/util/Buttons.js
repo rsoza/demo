@@ -19,6 +19,7 @@ function CustomButtons({
   fixerStart,
   setFixerTime,
   setIsPlaying,
+  setMoveCount,
 }) {
   return (
     <div>
@@ -74,7 +75,7 @@ function CustomButtons({
           </motion.div>
         </div>
       ) : stopGame && !fixerStart ? (
-        <motion.button className="button" onClick={() => setFixerTime(true)}>
+        <motion.button className="button" onClick={() => {setFixerTime(true); setMoveCount(2)}}>
           FIX CODE
         </motion.button>
       ) : !playing ? (

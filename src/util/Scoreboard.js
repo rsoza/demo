@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BreakerScoreBoard = ({ stopGame }) => {
+export const BreakerScoreBoard = () => {
   return (
     <div className="title breaker">
       <center>
@@ -12,7 +12,7 @@ export const BreakerScoreBoard = ({ stopGame }) => {
   );
 };
 
-export const FixerScoreboard = ({ stopGame, playing }) => {
+export const FixerScoreboard = () => {
   return (
     <div className="title fixer">
       <center>

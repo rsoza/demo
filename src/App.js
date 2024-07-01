@@ -1,6 +1,6 @@
 import CodeBlock from "./components/CodeBlock";
 import React, { useState } from "react";
-import { BreakerScoreBoard, FixerScoreboard } from "./components/Scoreboard";
+import { BreakerScoreBoard, FixerScoreboard } from "./util/Scoreboard";
 import CustomButtons from "./util/Buttons";
 import "./index.css";
 import { edit_code } from "./util/syntax";
@@ -47,6 +47,7 @@ function App() {
           fixerStart={fixerStart}
           setFixerTime={setFixerTime}
           setIsPlaying={setIsPlaying}
+          setMoveCount={setMoveCount}
         />
       </center>
       <CodeBlock

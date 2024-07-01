@@ -25,6 +25,7 @@ const Trun = ({
       setMoveCount(moveCount - 1);
     }
   };
+  
   const checkTriggerWord = (word) => {
     let type = "";
     for (const cat in syntax) {

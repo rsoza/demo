@@ -37,7 +37,7 @@ function BreakerVsFixer({
       ) : (
         <>
         <Turn
-            code={edit_code}
+            code={codeLines.join("\n")}
             triggerWords={cKeywords}
             setMoveCount={setMoveCount}
             moveCount={moveCount}
