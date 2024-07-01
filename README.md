@@ -1,7 +1,7 @@
 
 ## Demo
 
-Please visit [here](https://fir-599e4.web.app/) for a live.
+Please visit [here](https://fir-599e4.web.app/) for the live website.
 
 ## Installation
 
