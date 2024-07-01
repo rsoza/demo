@@ -31,12 +31,12 @@ To deploy this project run
 
 ## TODO
 
- [X] Compiler output
-   [ ] Link compiler to breaker/fixer game
- [ ] Use copilot or create a demo of how it could behave
- [ ] Functionality:
-   [ ] Insert lines/text
-   [ ] Delete lines/text
-   [ ] Make a point system
+- [X] Compiler output
+  - [ ] Link compiler to breaker/fixer game
+- [ ] Use copilot or create a demo of how it could behave
+- [ ] Functionality:
+  - [ ] Insert lines/text
+  - [ ] Delete lines/text
+  - [ ] Make a point system
 
 
