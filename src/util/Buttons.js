@@ -1,11 +1,10 @@
-import { Button, Center, Stack } from "@chakra-ui/react";
-import { RepeatIcon } from "@chakra-ui/icons";
-import React, {useState} from "react";
+import React from "react";
+import { motion } from "framer-motion";
 
 /* 
 Sequence of game LOGIC::
 
-playing -> false -> PLAY -> true -> STOP button appears
+playing -> false -> PLAY -> true -> STOP motion.button appears
 stopGame -> false -> STOP -> true -> FIX CODE button appears
 fixerStart -> false -> FIX CODE -> true -> TIMER appears
 
@@ -17,87 +16,100 @@ function CustomButtons({
   stopGame,
   handleStop,
   moveCount,
-  resetCode,
   fixerStart,
   setFixerTime,
   setIsPlaying,
 }) {
-  const [time, setTime] = useState(0);
-
-  const timer = () => {
-    setFixerTime(true);
-    
- 
-  };
-
   return (
-    <Center>
+    <div>
       {playing && !stopGame ? (
-        <Stack direction="row" spacing={2}>
-          <Button
-            hsize="lg"
-            height="48px"
-            width="200px"
-            border="2px"
-            borderColor="red"
-            colorScheme="red"
+        <div id="stack">
+          <motion.button
+            className="button"
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            whileHover={{
+              scale: 0.9,
+            }}
+            transition={{
+              ease: "easeInOut",
+              duration: 1,
+            }}
+            whileTap={{ scale: 1 }}
             onClick={() => handleStop()}
           >
-            STOP
-          </Button>
-          <Button
-            hsize="lg"
-            height="48px"
-            width="200px"
-            colorScheme="blue"
-            variant="flushed"
-            cursor="default"
+            LOCK
+          </motion.button>
+          {moveCount < 3 && (
+            <motion.button
+              className="button"
+              whileHover={{
+                scale: 0.9,
+              }}
+              whileTap={{ scale: 1 }}
+              onClick={() => window.location.reload()}
+              initial={{ opacity: 0 }}
+              exit={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                ease: "easeInOut",
+                duration: 1,
+              }}
+            >
+              Start Over
+            </motion.button>
+          )}
+          <motion.div
+            className="button"
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              ease: "easeInOut",
+              duration: 2,
+            }}
           >
             {moveCount} MOVES LEFT
-          </Button>
-          {moveCount < 3 && (
-            <Button onClick={() => resetCode()}>
-              <RepeatIcon size="x-large" />
-            </Button>
-          )}
-        </Stack>
+          </motion.div>
+        </div>
       ) : stopGame && !fixerStart ? (
-        <Button
-          hsize="lg"
-          height="48px"
-          width="200px"
-          border="2px"
-          borderColor="green"
-          colorScheme="green"
-          onClick={timer}
-        >
-          FIX CODE
-        </Button>
+        <motion.button className="button">FIX CODE</motion.button>
       ) : !playing ? (
-        <Button
-          hsize="lg"
-          height="48px"
-          width="200px"
-          border="2px"
-          borderColor="green"
-          colorScheme="green"
-          onClick={() => setIsPlaying(true)}
+        <motion.button
+          className="button"
+          initial={{
+            rotate: -25,
+            opacity: 0.5,
+          }}
+          animate={{
+            rotate: 25,
+            opacity: 1,
+          }}
+          transition={{
+            type: "tween",
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "reverse",
+            repeatDelay: 1,
+            duration: 2,
+          }}
+          whileHover={{
+            scale: 1.1,
+          }}
+          whileTap={{ scale: 0.9, opacity: 0, duration: 2 }}
+          onClick={() => {
+            setTimeout(() => {
+              setIsPlaying(true);
+            }, "200");
+          }}
         >
           PLAY
-        </Button>
+        </motion.button>
       ) : (
-        <Button
-          hsize="lg"
-          height="48px"
-          width="200px"
-          colorScheme="blue"
-          variant="flushed"
-          cursor="default"
-        >
-          {time}
-        </Button>
+        <motion.button>TIMER</motion.button>
       )}
-    </Center>
+    </div>
   );
 }
 

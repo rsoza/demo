@@ -1,16 +1,54 @@
 body {
   margin: 0; 
   padding: 10px; 
+  display: flex; 
+  justify-content: center;
+  background-color: hsl(0, 0%, 8%);
+  color:#abb2bf;
 }
-/* .chakra-ui-light {
-  background-color: rgb(20, 20, 20);
-  color:white;
-} */
 
+.button {
+  background-color: transparent;
+  padding: 10px;
+  border: transparent;
+  font-size: 3.5lvw;
+  color: rgb(87, 167, 140);
+  cursor: pointer;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  font-size: 3lvw;
+}
+
+.title {
+  padding: 17px 32px;
+}
+
+.fixer {
+  color:rgb(73, 131, 255);
+}
+
+.breaker {
+  color: orange;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  white-space: pre-wrap; 
+  word-break: break-word; 
+  display: block; 
+  padding: 20px;
+  overflow-x: auto;
+  border: 1px solid #282c34; 
+  background-color: hsl(0, 2%, 10%); 
+  overflow-x: auto; 
+  font-size: 2lvw;
+}
+option {
+  background-color: hsl(0, 2%, 10%); 
 }
 
 select {
@@ -20,13 +58,57 @@ select {
   background: none;        
   border: none;             
   cursor: pointer;
+  font-size: 2lvw;
+
 }
 
-/* Create a custom style for the select box if needed */
-select.custom-select {
-  background: none;
-  border: 1px solid #ccc;
-  width: 22px;
-  font-size: 16px;
-  cursor: pointer;
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: hsl(0, 0%, 8%);
+  color:#abb2bf;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  opacity: 0.9;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+#stack {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
 }
