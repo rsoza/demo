@@ -1,9 +1,10 @@
-import CodeBlock from "./components/CodeBlock";
-import React, { useState } from "react";
 import { BreakerScoreBoard, FixerScoreboard } from "./util/Scoreboard";
+import CodeBlock from "./components/CodeBlock";
+import Compiler from "./components/Compiler";
 import CustomButtons from "./util/Buttons";
-import "./index.css";
 import { edit_code } from "./util/syntax";
+import React, { useState } from "react";
+import "./index.css";
 
 function App() {
   const [playing, setIsPlaying] = useState();
@@ -59,6 +60,7 @@ function App() {
         fixerStart={fixerStart}
         codeLines={codeLines}
       />
+      <Compiler />
       <div id="snackbar">Please make a move before locking in</div>
     </div>
   );
