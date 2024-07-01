@@ -1,4 +1,4 @@
-import BreakerVsFixer from "./BreakerVsFixer";
+import Turn from "./Turn";
 import { motion } from "framer-motion";
 import {
   upper_static,
@@ -48,22 +48,39 @@ function CodeBlock({
       <pre>
         <code>
           {iterateThroughCode(upper_static, 0, len)}
-          {
-            <BreakerVsFixer
-              playing={playing}
-              stopGame={stopGame}
-              edit_code={edit_code}
-              cKeywords={cKeywords}
-              setMoveCount={setMoveCount}
-              moveCount={moveCount}
-              setCodeLines={setCodeLines}
-              len={len}
-              codeLines={codeLines}
-              lenEdit={lenEdit}
-              fixerStart={fixerStart}
-              iterateThroughCode={iterateThroughCode}
-            />
-          }
+          {playing && !stopGame ? (
+            <>
+              <Turn
+                code={edit_code}
+                triggerWords={cKeywords}
+                setMoveCount={setMoveCount}
+                moveCount={moveCount}
+                setCodeLines={setCodeLines}
+                len={len}
+                codeLines={codeLines}
+                lenEdit={lenEdit}
+                stopGame={stopGame}
+                breakersTurn={true}
+              />
+            </>
+          ) : !playing ? (
+            iterateThroughCode(edit_code, len, lenEdit)
+          ) : (
+            <>
+              <Turn
+                code={codeLines.join("\n")}
+                triggerWords={cKeywords}
+                setMoveCount={setMoveCount}
+                moveCount={moveCount}
+                setCodeLines={setCodeLines}
+                len={len}
+                codeLines={codeLines}
+                lenEdit={lenEdit}
+                stopGame={stopGame}
+                breakersTurn={false}
+              />
+            </>
+          )}
           {
             <motion.div
               animate={{
