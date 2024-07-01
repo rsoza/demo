@@ -65,62 +65,11 @@ export const syntax = {
   },
 };
 
-export const upper_static = `    #include <stdio.h>
-    #include <stdbool.h>
-    
-    // Function to perform binary search on a sorted array
-    bool binarySearch(int arr[], int n, int x) {`;
+export const upper_static = '#include <stdio.h>\n#include <stdbool.h>\n\n// Function to perform binary search on a sorted array \nbool binarySearch(int arr[], int n, int x) {';
 
-export const edit_code = `
-          int left = 0 , right = n - 1 ; 
-          while (left <= right) { 
-              int mid = left + (right - left) / 2 ; 
-      
-              if (arr[mid] == x) 
-                  return true; 
-      
-              if (arr[mid] < x) 
-                  left = mid + 1 ; 
+export const edit_code = '\n      int left = 0 , right = n - 1 ; \n      while (left <= right) { \n          int mid = left + (right - left) / 2 ; \n  \n          if (arr[mid] == x) \n              return true; \n  \n          if (arr[mid] < x) \n              left = mid + 1 ; \n\n          else \n              right = mid - 1 ;\n          }\n            ';
 
-              else 
-                  right = mid - 1 ;`;
-
-export const lower_static = `
-              }
-                // If we reach here, the element was not present
-        return false;
-          }
-
-        // Function to test the binary search algorithm
-        bool testBinarySearch() {
-            int arr[] = {2, 3, 4, 10, 40};
-            int n = sizeof(arr) / sizeof(arr[0]);
-            int x = 10;  // Element to search for
-
-            // Validate if binary search finds the element correctly
-            if (binarySearch(arr, n, x) != true) {
-                return false;
-            }
-
-            x = 5;  // Element to search for which is not in the array
-
-            // Validate if binary search correctly identifies the absence of the element
-            if (binarySearch(arr, n, x) != false) {
-                return false;
-            }
-
-            return true;
-        }
-
-        // Main function to run the test
-        int main() {
-            if (testBinarySearch()) {
-              printf("Binary search algorithm works correctly. Fixer wins!");
-            } else {
-              printf("Binary search algorithm does not work correctly. Breaker wins!");
-            }
-        }
-      };`;
+export const lower_static = '// If we reach here, the element was not present\n  return false;\n      }\n\n    // Function to test the binary search algorithm\n    bool testBinarySearch() {\n        int arr[] = {2, 3, 4, 10, 40};\n        int n = sizeof(arr) / sizeof(arr[0]);\n        int x = 10;  // Element to search for\n\n        // Validate if binary search finds the element correctly\n        if (binarySearch(arr, n, x) != true) {\n            return false;\n        }\n\n        x = 5;  // Element to search for which is not in the array\n\n        // Validate if binary search correctly identifies the absence of the element\n        if (binarySearch(arr, n, x) != false) {\n            return false;\n        }\n\n        return true;\n    }\n\n    // Main function to run the test\n    int main() {\n        if (testBinarySearch()) {\n          printf("Binary search algorithm works correctly. Fixer wins!");\n        } else {\n          printf("Binary search algorithm does not work correctly. Breaker wins!");\n        }\n    };';
 
 export const SelectColor = (text) => {
   for (const cat in syntax) {

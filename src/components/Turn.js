@@ -17,13 +17,13 @@ const Trun = ({
   setCompileCode
 }) => {
   const handleWordClick = (event, indexOfSelectedWord, lineNumber) => {
-    let selectedLine = codeLines[lineNumber].split(" ");
+    let selectedLine = codeLines[lineNumber].split(' ');
     if (selectedLine[indexOfSelectedWord] !== event.target.value && event.target.value != null&& moveCount > 0) {
       selectedLine[indexOfSelectedWord] = event.target.value;
-      codeLines[lineNumber] = selectedLine.join(" ");
+      codeLines[lineNumber] = selectedLine.join(' ');
       setCodeLines(codeLines);
       setMoveCount(moveCount - 1);
-      setCompileCode(upper_static+("\n")+codeLines.join("\n")+("\n")+lower_static);
+      setCompileCode(upper_static+codeLines.join("\n")+lower_static);
     }
   };
   
@@ -71,7 +71,7 @@ const Trun = ({
             <div key={key}>
               {key + len}
               {"  "}
-              {line.split(" ").map((word, index) => (
+              {line.split(' ').map((word, index) => (
                 <span
                   key={index + key}
                   style={{
@@ -93,7 +93,7 @@ const Trun = ({
                     </select>
                   ) : (
                     word
-                  )}{" "}
+                  )}{' '}
                 </span>
               ))}
               {key !== lenEdit && <br></br>}

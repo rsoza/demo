@@ -2,15 +2,16 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+
 function Compiler({ code }) {
   const [res, setResponse] = useState({});
-
   useEffect(() => {
-    console.log("code, ", code);
+
+
     const sendRequest = async () => {
       try {
         const requestData = {
-          source: code,
+          source:  code,
           compiler: "gcc141",
           options: {
             filters: {
@@ -36,10 +37,7 @@ function Compiler({ code }) {
         console.error("Error fetching data:", error);
       }
     };
-    const timeoutId = setTimeout(() => {
-      sendRequest();
-    }, 2000);
-    return () => clearTimeout(timeoutId);
+    sendRequest();
   }, [code]);
 
   return (
