@@ -20,7 +20,7 @@ To deploy this project run
 1. To enable firebase account does this once in demo directory:
 
 ```bash
-  firebase use -y
+  firebase use y
 ```
 2. Update build and deploy to line demo.
 ```bash
