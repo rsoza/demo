@@ -30,7 +30,7 @@ Install demo
 
 ## TODO
 
-- [] Link compiler to breaker/fixer game
+- [ ] Link compiler to breaker/fixer game
   - [X] Compiler output
 - [ ] Use copilot or create a demo of how it could behave
 - [ ] Functionality:
