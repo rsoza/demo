@@ -37,5 +37,13 @@ Install demo
   - [X] Insert lines/text
   - [X] Delete lines/text
   - [ ] Make a point system
+- [ ] Game rules page
+
+
+  ## Known bugs
+
+  - [ ] Code is not rerendering with changes
+  - [ ] Compiler is not in real time
+ 
 
 
