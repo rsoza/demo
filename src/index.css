@@ -142,3 +142,29 @@ select {
   from {bottom: 30px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
+
+
+#content-menu {
+  width: "100%";
+  position: absolute;
+  background-color: #abb2bf;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: solid 1px hsl(0, 0%, 8%);
+  font-size: 1lh;
+  color:#282c34;
+  border-bottom: none;
+}
+
+#content-menu li {
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid hsl(0, 0%, 8%);
+  padding: 10px;
+}
+
+#content-menu li:hover {
+  background-color:hsl(0, 0%, 8%);
+  color:#abb2bf;
+}

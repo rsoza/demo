@@ -56,7 +56,6 @@ const Trun = ({
                   style={{
                     color: "white",
                   }}
-                  contentEditable="true"
                 >
                   {triggerWords.includes(word) && moveCount > 0 ? (
                     <select

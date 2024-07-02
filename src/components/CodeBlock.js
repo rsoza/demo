@@ -2,6 +2,7 @@ import Turn from "./Turn";
 import { motion } from "framer-motion";
 import { cKeywords } from "../util/syntax";
 import { useState } from "react";
+import ContextMenu from "../util/ContextMenu";
 
 function CodeBlock({
   playing,
@@ -12,7 +13,13 @@ function CodeBlock({
   code,
 }) {
   const [showUnitTest, setShowUnitTest] = useState(false);
-  
+  const menuItems = ["edit code", "done"];
+  const [itemClicked, setItemClicked] = useState("");
+
+  function onMenuClicked(menuItemClicked) {
+    setItemClicked(menuItemClicked);
+  }
+
 
   const iterateThroughCode = (text) => {
     const segments = text.split(/---/g);
@@ -21,17 +28,34 @@ function CodeBlock({
       <div className="codeContainer">
         {segments.map((segment, index) => (
           <div key={index} className="codeLine">
-            <span contentEditable={index === 1} className="editableLine">
+            <span>
               {playing && index === 1 ? (
                 <>
-                  <Turn
-                    code={segment}
-                    triggerWords={cKeywords}
-                    setMoveCount={setMoveCount}
-                    moveCount={moveCount}
-                    setCodeLines={setCodeLines}
-                    codeLines={codeLines}
+                  <ContextMenu
+                    menuItems={menuItems}
+                    clickedMenu={onMenuClicked}
                   />
+                  {itemClicked === "edit code" ? (
+                    <>
+                      <span
+                        style={{ color: "white" }}
+                        contentEditable={index === 1}
+                        suppressContentEditableWarning={true}
+                        className="editableLine"
+                      >
+                        {segment.trim()}
+                      </span>
+                    </>
+                  ) : (
+                    <Turn
+                      code={segment}
+                      triggerWords={cKeywords}
+                      setMoveCount={setMoveCount}
+                      moveCount={moveCount}
+                      setCodeLines={setCodeLines}
+                      codeLines={codeLines}
+                    />
+                  )}
                 </>
               ) : (
                 segment.trim()
@@ -64,7 +88,12 @@ function CodeBlock({
           <code>{iterateThroughCode(code)}</code>
         </pre>
       </motion.div>
-      <div onClick={() => setShowUnitTest(!showUnitTest)} style={{cursor:"pointer"}}><code>Show Full Code</code></div>
+      <div
+        onClick={() => setShowUnitTest(!showUnitTest)}
+        style={{ cursor: "pointer" }}
+      >
+        <code>Show Full Code</code>
+      </div>
     </>
   );
 }

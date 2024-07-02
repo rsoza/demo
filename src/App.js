@@ -13,6 +13,7 @@ function App() {
   const [stopGame, setStop] = useState(false);
   const [codeLines, setCodeLines] = useState(originalCode.split("---")[1].split(/\r?\n|\r|\n/g));
   const [moveCount, setMoveCount] = useState(3);
+  // add eventlistener to update textbox to code ??
   const [code, setCode] = useState(originalCode);
 
   function movePlease() {
@@ -60,6 +61,7 @@ function App() {
         setMoveCount={setMoveCount}
         codeLines={codeLines}
         code={originalCode}
+        setCode={setCode}
       />
       <Compiler code={code.replaceAll("---", "\n")} />
       <div id="snackbar">Please make a move before locking in</div>

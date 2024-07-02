@@ -36,6 +36,7 @@ Install demo
 - [ ] Functionality:
   - [X] Insert lines/text
   - [X] Delete lines/text
+    - [X] Right click to edit/delete
   - [ ] Make a point system
 - [ ] Game rules page
 
