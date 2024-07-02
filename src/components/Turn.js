@@ -1,5 +1,5 @@
 import React from "react";
-import { SelectColor, lower_static, upper_static } from "../util/syntax";
+import { SelectColor} from "../util/syntax";
 import "../index.css";
 import { syntax } from "../util/syntax";
 
@@ -10,11 +10,6 @@ const Trun = ({
   moveCount,
   setCodeLines,
   codeLines,
-  len,
-  lenEdit,
-  stopGame,
-  breakersTurn,
-  setCompileCode
 }) => {
   const handleWordClick = (event, indexOfSelectedWord, lineNumber) => {
     let selectedLine = codeLines[lineNumber].split(' ');
@@ -23,7 +18,6 @@ const Trun = ({
       codeLines[lineNumber] = selectedLine.join(' ');
       setCodeLines(codeLines);
       setMoveCount(moveCount - 1);
-      setCompileCode(upper_static+codeLines.join("\n")+lower_static);
     }
   };
   
@@ -53,30 +47,16 @@ const Trun = ({
   };
 
   return (
-    <div>
-      {(moveCount === 0 || (stopGame && breakersTurn)) ? (
-        <div>
-          {codeLines.map((line, key) => (
-            <div key={key}>
-              {key + len}
-              {"  "}
-              {line}
-              {key !== lenEdit && <br></br>}
-            </div>
-          ))}
-        </div>
-      ) : (
         <div>
           {code.split(/\r?\n|\r|\n/g).map((line, key) => (
             <div key={key}>
-              {key + len}
-              {"  "}
               {line.split(' ').map((word, index) => (
                 <span
                   key={index + key}
                   style={{
                     color: "white",
                   }}
+                  contentEditable="true"
                 >
                   {triggerWords.includes(word) && moveCount > 0 ? (
                     <select
@@ -96,12 +76,11 @@ const Trun = ({
                   )}{' '}
                 </span>
               ))}
-              {key !== lenEdit && <br></br>}
+            <br></br>
             </div>
           ))}
         </div>
-      )}
-    </div>
+    
   );
 };
 

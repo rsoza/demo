@@ -40,6 +40,30 @@ body {
   cursor: default;
 }
 
+.codeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Adjust spacing between lines */
+}
+
+.codeLine {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lineNum {
+  min-width: 30px;
+  padding-right: 0.5rem; 
+}
+
+.editableLine {
+  flex: 1;
+  white-space: pre-wrap; 
+  outline: none; 
+  border: transparent;
+  padding: 0.25rem;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

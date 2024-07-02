@@ -2,19 +2,17 @@ import { BreakerScoreBoard, FixerScoreboard } from "./util/Scoreboard";
 import CodeBlock from "./components/CodeBlock";
 import Compiler from "./components/Compiler";
 import CustomButtons from "./util/Buttons";
-import { edit_code, upper_static, lower_static} from "./util/syntax";
+import {code} from "./util/syntax";
 import React, { useState } from "react";
 import "./index.css";
 
 
 
 function App() {
-  const [playing, setIsPlaying] = useState();
-  const [stopGame, setStop] = useState();
-  const [codeLines, setCodeLines] = useState(edit_code.split(/\r?\n|\r|\n/g));
+  const [playing, setIsPlaying] = useState(false);
+  const [stopGame, setStop] = useState(false);
+  const [codeLines, setCodeLines] = useState(code.split("---")[1].split(/\r?\n|\r|\n/g));
   const [moveCount, setMoveCount] = useState(3);
-  const [fixerStart, setFixerTime] = useState();
-  const [compile_code, setCompileCode] = useState(upper_static+edit_code+lower_static);
 
   function movePlease() {
     let x = document.getElementById("snackbar");
@@ -27,6 +25,7 @@ function App() {
   const handleStop = () => {
     if (moveCount !== 3) {
       setStop(true);
+      setIsPlaying(false);
     } else {
       movePlease();
     }
@@ -48,8 +47,6 @@ function App() {
           stopGame={stopGame}
           handleStop={handleStop}
           moveCount={moveCount}
-          fixerStart={fixerStart}
-          setFixerTime={setFixerTime}
           setIsPlaying={setIsPlaying}
           setMoveCount={setMoveCount}
         />
@@ -60,11 +57,9 @@ function App() {
         setCodeLines={setCodeLines}
         moveCount={moveCount}
         setMoveCount={setMoveCount}
-        fixerStart={fixerStart}
         codeLines={codeLines}
-        setCompileCode={setCompileCode}
       />
-      <Compiler code={compile_code} />
+      <Compiler code={code.replaceAll("---", "\n")} />
       <div id="snackbar">Please make a move before locking in</div>
     </div>
   );

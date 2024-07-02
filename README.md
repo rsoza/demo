@@ -30,12 +30,12 @@ Install demo
 
 ## TODO
 
-- [X] Compiler output
-  - [ ] Link compiler to breaker/fixer game
+- [] Link compiler to breaker/fixer game
+  - [X] Compiler output
 - [ ] Use copilot or create a demo of how it could behave
 - [ ] Functionality:
-  - [ ] Insert lines/text
-  - [ ] Delete lines/text
+  - [X] Insert lines/text
+  - [X] Delete lines/text
   - [ ] Make a point system
 
 

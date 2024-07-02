@@ -16,8 +16,6 @@ function CustomButtons({
   stopGame,
   handleStop,
   moveCount,
-  fixerStart,
-  setFixerTime,
   setIsPlaying,
   setMoveCount,
 }) {
@@ -74,11 +72,11 @@ function CustomButtons({
             {moveCount} MOVES LEFT
           </motion.div>
         </div>
-      ) : stopGame && !fixerStart ? (
-        <motion.button className="button" onClick={() => {setFixerTime(true); setMoveCount(2)}}>
-          FIX CODE
+      ) : stopGame && !playing ? (
+        <motion.button className="button" onClick={() => {setIsPlaying(true); setMoveCount(2)}}>
+          FIXER'S TURN
         </motion.button>
-      ) : !playing ? (
+      ) : !playing && !stopGame ? (
         <motion.button
           className="button"
           initial={{

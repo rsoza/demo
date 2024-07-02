@@ -1,106 +1,70 @@
 import Turn from "./Turn";
 import { motion } from "framer-motion";
-import {
-  upper_static,
-  edit_code,
-  lower_static,
-  cKeywords,
-} from "../util/syntax";
+import { cKeywords, code } from "../util/syntax";
 import { useState } from "react";
 
 function CodeBlock({
   playing,
-  stopGame,
   setCodeLines,
   moveCount,
   setMoveCount,
-  fixerStart,
   codeLines,
-  setCompileCode,
 }) {
   const [showUnitTest, setShowUnitTest] = useState(false);
-  const len = upper_static.split(/\r?\n|\r|\n/g).length;
-  const lenEdit = edit_code.split(/\r?\n|\r|\n/g).length + len;
-  const lenLow =
-    lower_static.substring(0, 100).split(/\r?\n|\r|\n/g).length + lenEdit;
 
-  const iterateThroughCode = (text, lineNumOffset, previousLineNum) => {
+  const iterateThroughCode = (text) => {
+    const segments = text.split(/---/g);
+
     return (
-      <>
-        {text.split(/\r?\n|\r|\n/g).map((line, key) => (
-          <div key={key}>
-            {key + lineNumOffset}
-            {"  "}
-            {line}
-            {key !== previousLineNum && <br></br>}
+      <div className="codeContainer">
+        {segments.map((segment, index) => (
+          <div key={index} className="codeLine">
+            <span contentEditable={index === 1} className="editableLine">
+              {playing && index === 1 ? (
+                <>
+                  <Turn
+                    code={segment}
+                    triggerWords={cKeywords}
+                    setMoveCount={setMoveCount}
+                    moveCount={moveCount}
+                    setCodeLines={setCodeLines}
+                    codeLines={codeLines}
+                  />
+                </>
+              ) : (
+                segment.trim()
+              )}
+            </span>
           </div>
         ))}
-      </>
+      </div>
     );
   };
+  console.log("code", code.split("---"));
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { delay: 0.5 } }}
-      style={{ filter: !fixerStart && stopGame ? "blur(4px)" : "none" }}
-    >
-      <br></br>
-      <pre>
-        <code>
-          {iterateThroughCode(upper_static, 0, len)}
-          {playing && !stopGame ? (
-            <>
-              <Turn
-                code={edit_code}
-                triggerWords={cKeywords}
-                setMoveCount={setMoveCount}
-                moveCount={moveCount}
-                setCodeLines={setCodeLines}
-                len={len}
-                codeLines={codeLines}
-                lenEdit={lenEdit}
-                stopGame={stopGame}
-                breakersTurn={true}
-                setCompileCode={setCompileCode}
-              />
-            </>
-          ) : !playing ? (
-            iterateThroughCode(edit_code, len, lenEdit)
-          ) : (
-            <>
-              <Turn
-                code={codeLines.join("\n")}
-                triggerWords={cKeywords}
-                setMoveCount={setMoveCount}
-                moveCount={moveCount}
-                setCodeLines={setCodeLines}
-                len={len}
-                codeLines={codeLines}
-                lenEdit={lenEdit}
-                stopGame={stopGame}
-                breakersTurn={false}
-                setCompileCode={setCompileCode}
-              />
-            </>
-          )}
-          {
-            <motion.div
-              animate={{
-                maxHeight: showUnitTest ? "100vh" : "10rem",
-                maxWidth: "200vh",
-                opacity: 1,
-              }}
-              transition={{ duration: 1.5 }}
-              onClick={() => setShowUnitTest(!showUnitTest)}
-              style={{ overflow: "hidden" }}
-            >
-              {iterateThroughCode(lower_static, lenEdit, lenLow)}
-            </motion.div>
-          }
-        </code>
-      </pre>
-    </motion.div>
+    <>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: { duration: 1, delay: 0.5 },
+          maxHeight: showUnitTest ? "200vh" : "30rem",
+          maxWidth: "200vh",
+        }}
+        style={{
+          filter: !playing ? "blur(4px)" : "none",
+          overflow: "hidden",
+        }}
+        transition={{ duration: 1.5 }}
+      >
+        <br></br>
+        <pre>
+          <code>{iterateThroughCode(code)}</code>
+        </pre>
+      </motion.div>
+      <div onClick={() => setShowUnitTest(!showUnitTest)} style={{cursor:"pointer"}}><code>Show Full Code</code></div>
+    </>
   );
 }
 
