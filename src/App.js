@@ -11,6 +11,7 @@ function App() {
   const [stopGame, setStop] = useState(false);
   const [moveCount, setMoveCount] = useState(3);
   const [code, setCode] = useState(originalCode);
+  const [compileCode, setCompiledCode] = useState(originalCode);
 
   function movePlease() {
     let x = document.getElementById("snackbar");
@@ -32,8 +33,8 @@ function App() {
   return (
     <>
       <div>
-      <CodeEditor code={code} setCode={setCode}/>
-<Compiler code={code} />
+      <CodeEditor code={code} setCode={setCode} setCompiledCode={setCompiledCode}/>
+<Compiler code={compileCode} />
       </div>
 
     </>
