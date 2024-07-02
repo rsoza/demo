@@ -1,6 +1,6 @@
 import Turn from "./Turn";
 import { motion } from "framer-motion";
-import { cKeywords, originalCode } from "../util/syntax";
+import { cKeywords } from "../util/syntax";
 import { useState } from "react";
 
 function CodeBlock({
@@ -9,9 +9,10 @@ function CodeBlock({
   moveCount,
   setMoveCount,
   codeLines,
+  code,
 }) {
   const [showUnitTest, setShowUnitTest] = useState(false);
-  const [code, setCode] = useState(originalCode);
+  
 
   const iterateThroughCode = (text) => {
     const segments = text.split(/---/g);
