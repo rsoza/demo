@@ -37,11 +37,11 @@ Install demo
   - [X] Insert lines/text
   - [X] Delete lines/text
     - [X] Right click to edit/delete
-  - [ ] Make a point system
+- [ ] Make a point system
+- [ ] Timer implementation
 - [ ] Game rules page
 
-
-  ## Known bugs
+ ## Known bugs
 
   - [ ] Code is not rerendering with changes
   - [ ] Compiler is not in real time
