@@ -10,6 +10,7 @@ fixerStart -> false -> FIX CODE -> true -> TIMER appears
 
 */
 
+
 function CustomButtons({
   playing,
   stopGame,
@@ -17,6 +18,7 @@ function CustomButtons({
   moveCount,
   setIsPlaying,
   setMoveCount,
+  text,
 }) {
   return (
     <div>
@@ -48,7 +50,9 @@ function CustomButtons({
           PLAY
         </button>
       ) : (
-        <div className="button dis">TIMER</div>
+        <>
+        <p id="time">{text}</p>
+         </>
       )}
     </div>
   );
