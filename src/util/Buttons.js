@@ -19,11 +19,13 @@ function CustomButtons({
   setIsPlaying,
   setMoveCount,
   text,
+  setCompiledCode,
+  code
 }) {
   return (
-    <div>
+    <div id="stack">
       {playing && !stopGame ? (
-        <div id="stack">
+        <div>
           <button onClick={() => handleStop()}>Lock In</button>
           {/* {moveCount < 3 && (
             <button onClick={() => window.location.reload()}>Start Over</button>
@@ -37,7 +39,7 @@ function CustomButtons({
             setMoveCount(2);
           }}
         >
-          FIXER'S TURN
+          Fixer's Turn
         </button>
       ) : !playing && !stopGame ? (
         <button
@@ -47,14 +49,22 @@ function CustomButtons({
             }, "200");
           }}
         >
-          PLAY
+          Play
         </button>
       ) : (
         <>
         <p id="time">{text}</p>
          </>
       )}
-    </div>
+  
+       <button
+         onClick={() => {
+           setCompiledCode(code);
+          }}
+          >
+         Compile
+       </button>
+         </div>
   );
 }
 

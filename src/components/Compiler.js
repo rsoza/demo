@@ -28,8 +28,6 @@ function Compiler({ code }) {
             },
           }
         );
-        console.log("response ", response);
-        //   setResponse(data);
         console.log("Response from API:", response.data.execResult.stdout);
         setResponse(response.data.execResult.stdout[0]);
       } catch (error) {
@@ -41,10 +39,11 @@ function Compiler({ code }) {
 
   return (
     <div
+    style={{background:"hsl(0, 0%, 30%)", color: "white"}}
     >
-      <h1>Compiler Output</h1>
-      <pre>
-        <code>{res.text}</code>
+      <h2>Compiler Output</h2>
+      <pre style={{color:"white"}}>
+        {res.text}
       </pre>
     </div>
   );

@@ -1,4 +1,4 @@
-import { originalCode } from "./util/syntax";
+import { first, second, third } from "./util/syntax";
 import React, { useState } from "react";
 import "./index.css";
 import CodeEditor from "./components/CodeEditor";
@@ -10,8 +10,8 @@ function App() {
   const [playing, setIsPlaying] = useState(false);
   const [stopGame, setStop] = useState(false);
   const [moveCount, setMoveCount] = useState(3);
-  const [code, setCode] = useState(originalCode);
-  const [compileCode, setCompiledCode] = useState(originalCode);
+  const [code, setCode] = useState(second);
+  const [compileCode, setCompiledCode] = useState(first+second+third);
   const [timer, setTimer] = useState("00:00:00");
 
 
@@ -70,7 +70,7 @@ const startTimer = (e) => {
   };
 
   return (
-    <>
+    <div>
       <CustomButtons
         playing={playing}
         stopGame={stopGame}
@@ -79,22 +79,22 @@ const startTimer = (e) => {
         setIsPlaying={setIsPlaying}
         setMoveCount={setMoveCount}
         text={timer}
+        setCompiledCode={setCompiledCode}
+        code={code}
       />
-      <div style={{ paddingBottom: "10px" }}></div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { delay: 0.5 } }}
-        style={{ filter: !playing ? "blur(4px)" : "none" }}
-      >
+        style={{ filter: !playing ? "blur(4px)" : "none"}}
+      ><br></br>
         <CodeEditor
           code={code}
           setCode={setCode}
           setCompiledCode={setCompiledCode}
         />
         <Compiler code={compileCode} />
-        <div id="snackbar">Please make a move before locking in</div>
       </motion.div>
-    </>
+    </div>
   );
 }
 
