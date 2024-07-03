@@ -4,6 +4,7 @@ import axios from "axios";
 
 function Compiler({ code }) {
   const [res, setResponse] = useState({});
+  const [e, setError] = useState("");
   useEffect(() => {
 
     const sendRequest = async () => {
@@ -30,6 +31,7 @@ function Compiler({ code }) {
         console.log("Response from API:", response.data.execResult.stdout);
         setResponse(response.data.execResult.stdout[0]);
       } catch (error) {
+        setError("Error: Syntactically wrong, try again");
         console.error("Error fetching data:", error);
       }
     };
@@ -42,7 +44,7 @@ function Compiler({ code }) {
     >
       <h2>Compiler Output</h2>
       <pre style={{color:"white"}}>
-        {res.text}
+        {e ? e : res.text}
       </pre>
     </div>
   );
