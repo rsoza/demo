@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -41,15 +40,13 @@ function Compiler({ code }) {
   }, [code]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { delay: 0.5 } }}
+    <div
     >
       <h1>Compiler Output</h1>
       <pre>
         <code>{res.text}</code>
       </pre>
-    </motion.div>
+    </div>
   );
 }
 

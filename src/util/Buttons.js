@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 /* 
 Sequence of game LOGIC::
@@ -23,82 +22,23 @@ function CustomButtons({
     <div>
       {playing && !stopGame ? (
         <div id="stack">
-          <motion.button
-            className="button"
-            initial={{ opacity: 0 }}
-            exit={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            whileHover={{
-              scale: 0.9,
-            }}
-            transition={{
-              ease: "easeInOut",
-              duration: 1,
-            }}
-            whileTap={{ scale: 1 }}
-            onClick={() => handleStop()}
-          >
-            LOCK
-          </motion.button>
-          {moveCount < 3 && (
-            <motion.button
-              className="button"
-              whileHover={{
-                scale: 0.9,
-              }}
-              whileTap={{ scale: 1 }}
-              onClick={() => window.location.reload()}
-              initial={{ opacity: 0 }}
-              exit={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                ease: "easeInOut",
-                duration: 1,
-              }}
-            >
-              Start Over
-            </motion.button>
+          <button onClick={() => handleStop()}>Lock In</button>
+          {/* {moveCount < 3 && (
+            <button onClick={() => window.location.reload()}>Start Over</button>
           )}
-          <motion.div
-            className="button dis"
-            initial={{ opacity: 0 }}
-            exit={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              ease: "easeInOut",
-              duration: 2,
-            }}
-          >
-            {moveCount} MOVES LEFT
-          </motion.div>
+          <div>{moveCount} MOVES LEFT</div> */}
         </div>
       ) : stopGame && !playing ? (
-        <motion.button className="button" onClick={() => {setIsPlaying(true); setMoveCount(2)}}>
+        <button
+          onClick={() => {
+            setIsPlaying(true);
+            setMoveCount(2);
+          }}
+        >
           FIXER'S TURN
-        </motion.button>
+        </button>
       ) : !playing && !stopGame ? (
-        <motion.button
-          className="button"
-          initial={{
-            rotate: -25,
-            opacity: 0.5,
-          }}
-          animate={{
-            rotate: 25,
-            opacity: 1,
-          }}
-          transition={{
-            type: "tween",
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "reverse",
-            repeatDelay: 1,
-            duration: 2,
-          }}
-          whileHover={{
-            scale: 1.1,
-          }}
-          whileTap={{ scale: 0.9, opacity: 0, duration: 2 }}
+        <button
           onClick={() => {
             setTimeout(() => {
               setIsPlaying(true);
@@ -106,9 +46,9 @@ function CustomButtons({
           }}
         >
           PLAY
-        </motion.button>
+        </button>
       ) : (
-        <motion.div className="button dis">TIMER</motion.div>
+        <div className="button dis">TIMER</div>
       )}
     </div>
   );
