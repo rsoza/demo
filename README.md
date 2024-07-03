@@ -30,10 +30,12 @@ Install demo
 
 ## TODO
 
-- [ ] Link compiler to breaker/fixer game
+- [X] Link compiler to breaker/fixer game
   - [X] Compiler output
-- [ ] Use copilot or create a demo of how it could behave
-- [ ] Functionality:
+- [X] Use copilot or create a demo of how it could behave
+  - [ ] Make read-only parts
+  - [ ] Read-only should be greyed out 
+- [X] Functionality:
   - [X] Insert lines/text
   - [X] Delete lines/text
     - [X] Right click to edit/delete
@@ -43,8 +45,9 @@ Install demo
 
  ## Known bugs
 
-  - [ ] Code is not rerendering with changes
-  - [ ] Compiler is not in real time
+  - [X] Code is not rerendering with changes
+  - [X] Compiler is not in real time
+  - [ ] Mobile/desktop view is finicky 
  
 
 
