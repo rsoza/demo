@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 /* 
 Sequence of game LOGIC::
@@ -10,18 +10,42 @@ fixerStart -> false -> FIX CODE -> true -> TIMER appears
 
 */
 
-
 function CustomButtons({
   playing,
   stopGame,
   handleStop,
-  moveCount,
   setIsPlaying,
   setMoveCount,
   text,
   setCompiledCode,
-  code
+  code,
 }) {
+  const [timer, setTimer] = useState("");
+
+  function startTimer(duration) {
+    var timer = duration,
+      minutes,
+      seconds;
+    setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      setTimer( minutes + ":" + seconds);
+
+      if (--timer < 0) {
+        timer = duration;
+      }
+    }, 1000);
+  }
+
+ function onTime() {
+    var fiveMinutes = 60 * 1;
+    startTimer(fiveMinutes);
+  };
+
   return (
     <div id="stack">
       {playing && !stopGame ? (
@@ -37,6 +61,7 @@ function CustomButtons({
           onClick={() => {
             setIsPlaying(true);
             setMoveCount(2);
+            onTime();
           }}
         >
           Fixer's Turn
@@ -53,18 +78,18 @@ function CustomButtons({
         </button>
       ) : (
         <>
-        <p id="time">{text}</p>
-         </>
+          {timer}
+        </>
       )}
-  
-       <button
-         onClick={() => {
-           setCompiledCode(code);
-          }}
-          >
-         Compile
-       </button>
-         </div>
+
+      <button
+        onClick={() => {
+          setCompiledCode(code);
+        }}
+      >
+        Compile
+      </button>
+    </div>
   );
 }
 
