@@ -1,11 +1,11 @@
 import React from "react";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-c_cpp";
-import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/theme-cloud_editor";
 import "ace-builds/src-noconflict/ext-language_tools";
 import { first, third } from "../util/syntax";
 
-const CodeEditor = ({ code, setCode, setCompiledCode }) => {
+const CodeEditor = ({ code, setCode }) => {
   const handleChange = (liveText) => {
     setCode(liveText);
   };
@@ -23,7 +23,7 @@ const CodeEditor = ({ code, setCode, setCompiledCode }) => {
       <pre>{first}</pre>
       <AceEditor
         mode="c_cpp"
-        theme="github"
+        theme="cloud_editor"
         onChange={handleChange}
         value={code}
         editorProps={{ $blockScrolling: true }}
