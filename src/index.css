@@ -1,21 +1,22 @@
 body {
+  display: block;
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
+  margin: auto;
 }
-:root {
-  display: flex;
+
+.App{
+  display: block;
   justify-content: center;
 }
-pre {
-  overflow-wrap: break-word;
-  color: grey;
 
-}
-body .ace_scrollbar {
-    display: none;
-}
-body .ace_editor:hover .ace_scrollbar {
-    display: none;
+pre {
+  color: grey;
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;
 }
 
 #stack {

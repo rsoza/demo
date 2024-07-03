@@ -6,7 +6,6 @@ function Compiler({ code }) {
   const [res, setResponse] = useState({});
   useEffect(() => {
 
-
     const sendRequest = async () => {
       try {
         const requestData = {

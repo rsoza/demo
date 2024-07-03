@@ -70,7 +70,7 @@ const startTimer = (e) => {
   };
 
   return (
-    <div>
+    <div className="App">
       <CustomButtons
         playing={playing}
         stopGame={stopGame}
@@ -80,17 +80,16 @@ const startTimer = (e) => {
         setMoveCount={setMoveCount}
         text={timer}
         setCompiledCode={setCompiledCode}
-        code={code}
+        code={first+code+third}
       />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { delay: 0.5 } }}
-        style={{ filter: !playing ? "blur(4px)" : "none"}}
+        style={{ filter: !playing ? "blur(2px)" : "none"}}
       ><br></br>
         <CodeEditor
           code={code}
           setCode={setCode}
-          setCompiledCode={setCompiledCode}
         />
         <Compiler code={compileCode} />
       </motion.div>
