@@ -33,21 +33,22 @@ Install demo
 - [X] Link compiler to breaker/fixer game
   - [X] Compiler output
 - [X] Use copilot or create a demo of how it could behave
-  - [ ] Make read-only parts
-  - [ ] Read-only should be greyed out 
+  - [X] Make read-only parts
+  - [X] Read-only should be greyed out 
 - [X] Functionality:
   - [X] Insert lines/text
   - [X] Delete lines/text
     - [X] Right click to edit/delete
 - [ ] Make a point system
-- [ ] Timer implementation
+- [X] Timer implementation
 - [ ] Game rules page
+- [X] Update unit test to account for syntax errors
 
  ## Known bugs
 
   - [X] Code is not rerendering with changes
   - [X] Compiler is not in real time
-  - [ ] Mobile/desktop view is finicky 
+  - [X] Mobile/desktop view is finicky 
  
 
 
